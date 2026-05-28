@@ -1,0 +1,15 @@
+{
+  "n_edits": 1,
+  "n_applied": 1,
+  "n_skipped": 0,
+  "results": [
+    {
+      "index": 0,
+      "op": "insert_after",
+      "status": "applied",
+      "reason": "",
+      "target_preview": "## Branches: aggregator + head",
+      "content_preview": "\n\n### Stratified k-fold CV for small cohorts\n\nFor cohort sizes < 200 slides, pre"
+    }
+  ]
+}

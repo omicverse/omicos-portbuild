@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "skill": "pathology-lazyslide-he-analysis",
+  "sample_requests": [
+    "Run LazySlide on data/V1_Breast_Section_1.svs: tissue + 256-px tiles at 0.5 mpp + UNI2 features + a QC report.",
+    "Given this H&E slide, classify each tile as one of [tumor, stroma, necrosis, normal] using Virchow + PRISM and produce a tissue-overlay report."
+  ],
+  "required_description_terms": ["lazyslide", "h&e"],
+  "required_sections": ["## Goal", "## Quick Workflow", "## Branches: feature_extraction(wsi, model)", "## Validation"],
+  "required_body_terms": ["find_tissues", "tile_tissues", "feature_extraction", "feature_aggregation", "zero_shot_score", "WSIData"],
+  "required_paths": ["references/source-grounding.md"],
+  "smoke_commands": [
+    {
+      "name": "lazyslide_import_smoke",
+      "tier": "import",
+      "command": "${PYTHON} -c \"import lazyslide; import wsidata; print('OK lazyslide=' + lazyslide.__version__)\"",
+      "conda_env": "omicdev",
+      "timeout_seconds": 30,
+      "expect_stdout_contains": ["OK lazyslide="],
+      "expect_stderr_contains": []
+    },
+    {
+      "name": "lazyslide_canonical_pipeline_signatures",
+      "tier": "import",
+      "command": "${PYTHON} -c \"import lazyslide as zs; assert callable(zs.pp.find_tissues); assert callable(zs.pp.tile_tissues); assert callable(zs.tl.feature_extraction); assert callable(zs.tl.feature_aggregation); assert callable(zs.tl.zero_shot_score); print('signatures OK')\"",
+      "conda_env": "omicdev",
+      "timeout_seconds": 30,
+      "expect_stdout_contains": ["signatures OK"],
+      "expect_stderr_contains": []
+    }
+  ],
+  "validation_budget": {
+    "smoke_mode": "import_only",
+    "max_wall_seconds": 120,
+    "skip_reason": ""
+  }
+}

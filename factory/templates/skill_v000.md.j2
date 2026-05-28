@@ -1,0 +1,48 @@
+---
+id: {{ skill_id }}
+name: {{ skill_id }}
+title: {{ title }}
+description: {{ description }}
+category: {{ category | default('TODO') }}
+category_order: {{ category_order | default(100) }}
+tier: {{ tier | default('pro') }}
+summary: {{ summary }}
+use_when: {{ use_when }}
+---
+
+# {{ title }}
+
+## Goal
+
+{{ goal | default('TODO — one short paragraph describing the capability.') }}
+
+## Quick Workflow
+
+{% for step in workflow_steps | default(['TODO step 1', 'TODO step 2', 'TODO step 3']) %}
+{{ loop.index }}. {{ step }}
+{% endfor %}
+
+## Resource Map
+
+{% for resource in resource_map | default([
+  {'kind': 'Read', 'path': 'references/source-grounding.md',
+   'when': 'documenting concrete function signatures, defaults, or CLI flags'}
+]) %}
+- {{ resource.kind }} `{{ resource.path }}` when {{ resource.when }}.
+{% endfor %}
+
+## Constraints
+
+{% for c in constraints | default(['TODO']) %}
+- {{ c }}
+{% endfor %}
+
+## Validation
+
+{% for v in validation | default(['TODO — concrete output check']) %}
+- {{ v }}
+{% endfor %}
+
+<!-- SLOW_UPDATE_START -->
+<!-- Epoch-boundary longitudinal guidance is written here by the slow_update prompt. Step-level edits never touch this region. -->
+<!-- SLOW_UPDATE_END -->

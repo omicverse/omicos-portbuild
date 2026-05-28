@@ -1,0 +1,12 @@
+{
+  "reasoning": "pass-through",
+  "edits": [
+    {
+      "op": "insert_after",
+      "target": "## Branches: aggregator + head",
+      "content": "\n\n### Stratified k-fold CV for small cohorts\n\nFor cohort sizes < 200 slides, prefer `StratifiedKFold(n_splits=5,\nshuffle=True, random_state=10)` over a single `train_test_split`. Run\n`feature_extraction` + `feature_aggregation` per slide ONCE up-front, then\nfold the **per-slide AnnData** (cheap to re-split). Report mean AUROC ±\nstd across folds + per-fold confusion matrices.\n",
+      "support_count": 1,
+      "source_type": "failure"
+    }
+  ]
+}

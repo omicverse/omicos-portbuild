@@ -1,0 +1,4 @@
+capability_id: pathology-lazyslide-supervised-classification
+kind: skill
+domain: spatial-he
+role: terminal

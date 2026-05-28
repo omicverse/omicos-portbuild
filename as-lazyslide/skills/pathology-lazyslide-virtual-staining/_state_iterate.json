@@ -1,0 +1,20 @@
+{
+  "capability_id": "pathology-lazyslide-virtual-staining",
+  "s_cur_path": "candidates/v002/skill/SKILL.md",
+  "s_best_path": "candidates/v002/skill/SKILL.md",
+  "score_cur": 96.0,
+  "score_best": 96.0,
+  "iter_n": 1,
+  "max_iters": 1,
+  "Lt": 4,
+  "pass_threshold": 75,
+  "target_score": 95.0,
+  "cache": {
+    "4627d881f2bc71f0e4391dd0f72ce84e81c1cebb63784f86f28eb347056702e7": 89.0,
+    "0bae308addf4f6efb71efe08e449cd1c8bab5265a3cdc3a23104dec3c1de65b0": 83.6,
+    "a6fe1e243065e125fb70368e04de94a9ebbf73db97769d7b0578add7d4918395": 96.0
+  },
+  "rejected": [],
+  "phase": "done",
+  "pending": {}
+}

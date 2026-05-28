@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "skill": "{{ skill_id }}",
+  "sample_requests": [
+    {%- for req in sample_requests | default(['TODO realistic user request']) %}
+    "{{ req }}"{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ],
+  "required_description_terms": [
+    {%- for t in required_description_terms | default([]) %}
+    "{{ t }}"{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ],
+  "required_sections": [
+    {%- for s in required_sections | default(['## Goal', '## Quick Workflow', '## Validation']) %}
+    "{{ s }}"{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ],
+  "required_body_terms": [
+    {%- for t in required_body_terms | default([]) %}
+    "{{ t }}"{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ],
+  "required_paths": [
+    {%- for p in required_paths | default([]) %}
+    "{{ p }}"{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ],
+  "smoke_commands": [
+    {%- for cmd in smoke_commands | default([]) %}
+    {
+      "name": "{{ cmd.name }}",
+      "tier": "{{ cmd.tier | default('full') }}",
+      "command": "{{ cmd.command }}",
+      "conda_env": "{{ cmd.conda_env | default('omicdev') }}",
+      "timeout_seconds": {{ cmd.timeout_seconds | default(60) }},
+      "expect_stdout_contains": {{ cmd.expect_stdout_contains | default([]) | tojson }},
+      "expect_stderr_contains": {{ cmd.expect_stderr_contains | default([]) | tojson }}
+    }{% if not loop.last %},{% endif %}
+    {%- endfor %}
+  ],
+  "validation_budget": {
+    "smoke_mode": "{{ smoke_mode | default('full') }}",
+    "max_wall_seconds": {{ max_wall_seconds | default(300) }},
+    "skip_reason": "{{ skip_reason | default('') }}"
+  }
+}

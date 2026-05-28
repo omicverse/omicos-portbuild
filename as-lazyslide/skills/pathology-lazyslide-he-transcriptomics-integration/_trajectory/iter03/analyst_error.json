@@ -1,0 +1,20 @@
+{
+  "batch_size": 1,
+  "failure_summary": [
+    {
+      "failure_type": "no_multi_gene_workflow",
+      "count": 1,
+      "description": "RNALinker is single-target; multi-gene panel analyses need a loop pattern not documented"
+    }
+  ],
+  "patch": {
+    "reasoning": "iter03",
+    "edits": [
+      {
+        "op": "insert_after",
+        "target": "## Alignment failure modes",
+        "content": "\n\n## Multi-gene panel pattern\n\nFor an immune signature of N genes, run RNALinker per gene and aggregate:\n\n```python\nimport pandas as pd\npanel = [\"CD8A\", \"GZMB\", \"PRF1\", \"IFNG\"]\nscores = []\nfor g in panel:\n    high_mask = rna[:, g].X.toarray().ravel() > rna[:, g].X.mean()\n    rna.obs[f\"{g}_high\"] = high_mask\n    linker = RNALinker(agg_features=agg_features, others=rna)\n    linker.score(groupby=f\"{g}_high\", score_group=True,\n                 test_method=\"wilcoxon\", n_features=100,\n                 key_added=f\"assoc_{g}\")\n    scores.append(agg_features.obs[f\"assoc_{g}\"])\npanel_score = pd.concat(scores, axis=1).mean(axis=1)\nagg_features.obs[\"panel_assoc\"] = panel_score\n```\n"
+      }
+    ]
+  }
+}

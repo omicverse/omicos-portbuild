@@ -1,0 +1,4 @@
+capability_id: pathology-lazyslide-virtual-staining
+kind: skill
+domain: spatial-he
+role: terminal

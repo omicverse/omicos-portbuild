@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "skill": "pathology-lazyslide-cell-segmentation",
+  "sample_requests": [
+    "Run cell segmentation with InstanSeg + NuLite cell typing on this lung H&E slide; show me per-cell density and type composition.",
+    "用 LazySlide 跑 cell-level 分割，instanseg 模型，给我每个细胞的多边形 + 报告"
+  ],
+  "required_description_terms": ["lazyslide", "cell"],
+  "required_sections": ["## Goal", "## Quick Workflow", "## Branches: model selection", "## Validation"],
+  "required_body_terms": ["seg.cells", "seg.cell_types", "instanseg", "nulite", "wsi.shapes"],
+  "required_paths": ["references/source-grounding.md"],
+  "smoke_commands": [
+    {
+      "name": "lazyslide_seg_imports",
+      "tier": "import",
+      "command": "${PYTHON} -c \"import lazyslide as zs; assert callable(zs.seg.cells); assert callable(zs.seg.cell_types); assert callable(zs.seg.tissue); print('seg OK')\"",
+      "conda_env": "omicdev",
+      "timeout_seconds": 30,
+      "expect_stdout_contains": ["seg OK"],
+      "expect_stderr_contains": []
+    }
+  ],
+  "validation_budget": {
+    "smoke_mode": "import_only",
+    "max_wall_seconds": 120,
+    "skip_reason": ""
+  }
+}

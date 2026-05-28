@@ -1,0 +1,38 @@
+capability_id: lazyslide_package_root
+kind: capability
+package: lazyslide
+source: https://github.com/RendeiroLab/LazySlide.git
+docs: https://lazyslide.readthedocs.io/en/latest/
+notebooks:
+- Preprocessing a WSI
+- Feature extraction and spatial analysis
+- Zero-shot learning
+- Approximate segmentation through tile prediction
+- Histology tile generation
+- Cell segmentation tutorial
+- Integration with slide-level labels
+- Survival prediction with cancer WSIs
+- Integration with transcriptomics
+- Virtual Staining
+- Welcome
+- Visualization
+cost_profile: gpu-required
+python_env: omicdev
+r_env: CMAP
+splits:
+  train_ratio: 0.2
+  selection_ratio: 0.1
+  test_ratio: 0.7
+optimizer:
+  epochs: 4
+  rollout_batch_size_B: 40
+  minibatch_size_Bm: 8
+  edit_budget_Lt: 4
+  lr_schedule: constant
+  lr_floor: 2
+  slow_update_samples: 20
+  meta_skill_enabled: true
+quality:
+  pass_threshold: 75
+  hard_gate_min: 3
+layout: multi-capability

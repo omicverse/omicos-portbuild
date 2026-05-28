@@ -1,0 +1,11 @@
+capability_id: pathology_lazyslide
+kind: agent
+domain: spatial-he
+role: terminal
+owns_skills:
+  - pathology-lazyslide-he-analysis
+  - pathology-lazyslide-cell-segmentation
+  - pathology-lazyslide-supervised-classification
+  - pathology-lazyslide-survival-prediction
+  - pathology-lazyslide-he-transcriptomics-integration
+  - pathology-lazyslide-virtual-staining

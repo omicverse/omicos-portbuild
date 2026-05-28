@@ -1,0 +1,20 @@
+{
+  "batch_size": 1,
+  "failure_summary": [
+    {
+      "failure_type": "no_cohort_size_guidance",
+      "count": 1,
+      "description": "no minimum cohort size guidance; users try to train on n<50 cohorts and get unstable c-index"
+    }
+  ],
+  "patch": {
+    "reasoning": "iter02",
+    "edits": [
+      {
+        "op": "insert_after",
+        "target": "## Validation",
+        "content": "\n\n## Minimum cohort size\n\nCox training with TITAN features requires **at least n=80 slides with\nuncensored events**; below that, c-index variance dominates the signal.\nFor cohorts of n=30–80 with mostly uncensored events, prefer the\nsksurv elastic-net path; for n<30, fall back to ranking-only metrics or\nrefuse the run with a clear remediation hint.\n"
+      }
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+capability_id: pathology-lazyslide-cell-segmentation
+kind: skill
+package: lazyslide
+source: https://github.com/RendeiroLab/LazySlide.git
+docs: https://lazyslide.readthedocs.io/en/latest/
+notebooks:
+- Cell segmentation tutorial
+cost_profile: gpu-required
+python_env: omicdev
+r_env: CMAP
+splits:
+  train_ratio: 0.2
+  selection_ratio: 0.1
+  test_ratio: 0.7
+optimizer:
+  epochs: 4
+  rollout_batch_size_B: 40
+  minibatch_size_Bm: 8
+  edit_budget_Lt: 4
+  lr_schedule: constant
+  lr_floor: 2
+  slow_update_samples: 20
+  meta_skill_enabled: true
+quality:
+  pass_threshold: 75
+  hard_gate_min: 3
+domain: spatial-he
+title: Cell-level segmentation of H&E with LazySlide
+key_modules:
+- lazyslide.preprocess
+- lazyslide.segmentation
+key_apis:
+- name: wsidata.open_wsi
+  purpose: load WSI
+- name: lazyslide.preprocess.find_tissues
+  purpose: tissue mask precondition
+- name: lazyslide.segmentation.cells
+  purpose: cell-level segmentation (default model='instanseg')
+- name: lazyslide.segmentation.cell_types
+  purpose: cell type segmentation (default model='nulite')
+- name: lazyslide.segmentation.tissue
+  purpose: DL-based tissue (model in {'grandqc','pathprofiler','hest'})
+- name: lazyslide.segmentation.artifact / semantic / zero_shot
+  purpose: additional seg primitives
+- name: lazyslide.segmentation.CellSegmentationRunner
+  purpose: low-level runner with extract_features
+- name: lazyslide.segmentation.SemanticSegmentationRunner
+  purpose: low-level semantic runner
+distinct_from: Per-cell polygons (one row per cell). Different geometric primitive
+  from tissue or tile shapes.

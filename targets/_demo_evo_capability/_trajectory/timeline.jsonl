@@ -1,0 +1,15 @@
+{"ts": "2026-05-28T10:01:03Z", "kind": "loop_initialized", "epoch": 1, "step": 0, "payload": {"capability_id": "evo_capability", "total_epochs": 4, "edit_budget_Lt": 4, "lr_schedule": "constant", "v000_hash": "eda06e51c114ab0a8a5e3cc6ff2b2aedd1113e8831bbc9c013d84ac842a25848"}}
+{"ts": "2026-05-28T10:01:03Z", "kind": "candidate_evaluated", "epoch": 1, "step": 0, "payload": {"candidate": "v000", "score_cand": 0.5, "score_cur_at_decision": NaN, "decision": "initial"}}
+{"ts": "2026-05-28T10:01:03Z", "kind": "rollouts_recorded", "epoch": 1, "step": 0, "payload": {"jsonl_path": "_trajectory/e01/s00/rollouts.jsonl", "n_failures": 3, "n_successes": 2, "skill_at_rollout": "candidates/v000/skill/SKILL.md"}}
+{"ts": "2026-05-28T10:01:03Z", "kind": "proposal_recorded", "epoch": 1, "step": 0, "payload": {"prompt": "analyst_error", "json_path": "_trajectory/e01/s00/analyst_error.json", "n_edits_proposed": 2, "failure_types": ["missing_branch_coverage"]}}
+{"ts": "2026-05-28T10:01:03Z", "kind": "proposal_recorded", "epoch": 1, "step": 0, "payload": {"prompt": "analyst_success", "json_path": "_trajectory/e01/s00/analyst_success.json", "n_edits_proposed": 1}}
+{"ts": "2026-05-28T10:01:03Z", "kind": "proposal_recorded", "epoch": 1, "step": 0, "payload": {"prompt": "merge_failure", "json_path": "_trajectory/e01/s00/merge_failure.json", "n_edits_merged": 1}}
+{"ts": "2026-05-28T10:01:03Z", "kind": "proposal_recorded", "epoch": 1, "step": 0, "payload": {"prompt": "merge_success", "json_path": "_trajectory/e01/s00/merge_success.json", "n_edits_merged": 1}}
+{"ts": "2026-05-28T10:01:03Z", "kind": "proposal_recorded", "epoch": 1, "step": 0, "payload": {"prompt": "merge_final", "json_path": "_trajectory/e01/s00/merge_final.json", "n_edits_merged": 2}}
+{"ts": "2026-05-28T10:01:03Z", "kind": "proposal_recorded", "epoch": 1, "step": 0, "payload": {"prompt": "ranking", "json_path": "_trajectory/e01/s00/ranking.json", "n_selected": 2}}
+{"ts": "2026-05-28T10:01:03Z", "kind": "candidate_applied", "epoch": 1, "step": 0, "payload": {"candidate": "v001", "parent": "v000", "n_applied": 2, "n_skipped": 0, "Lt_eff": 4, "skip_reasons": []}}
+{"ts": "2026-05-28T10:01:03Z", "kind": "candidate_evaluated", "epoch": 1, "step": 0, "payload": {"candidate": "v001", "score_cand": 0.62, "score_cur_at_decision": 0.5, "score_best_at_decision": 0.5, "decision": "accept_and_promote_best"}}
+{"ts": "2026-05-28T10:01:03Z", "kind": "proposal_recorded", "epoch": 1, "step": 1, "payload": {"prompt": "slow_update", "json_path": "_trajectory/e01/slow_update.json"}}
+{"ts": "2026-05-28T10:01:03Z", "kind": "slow_update_applied", "epoch": 1, "step": 1, "payload": {"candidate": "v002"}}
+{"ts": "2026-05-28T10:01:03Z", "kind": "candidate_evaluated", "epoch": 1, "step": 1, "payload": {"candidate": "v002", "score_cand": 0.58, "score_cur_at_decision": 0.62, "score_best_at_decision": 0.62, "decision": "reject"}}
+{"ts": "2026-05-28T10:01:03Z", "kind": "loop_finalized", "epoch": 1, "step": 2, "payload": {"best": "v001", "score_best": 0.62}}

@@ -1,0 +1,21 @@
+{
+  "capability_id": "pathology-lazyslide-he-transcriptomics-integration",
+  "s_cur_path": "candidates/v003/skill/SKILL.md",
+  "s_best_path": "candidates/v003/skill/SKILL.md",
+  "score_cur": 98.4,
+  "score_best": 98.4,
+  "iter_n": 1,
+  "max_iters": 1,
+  "Lt": 4,
+  "pass_threshold": 75,
+  "target_score": 95.0,
+  "cache": {
+    "e8b7b7734faff5c6c7061d31b4f6757a492539de50d7c80af60c6fa423e9f4cc": 93.8,
+    "ac2188b8bdb209def093c0528b3033b62ef95f6977f9951ed507f75563d1e62a": 89.8,
+    "279baa5257d84619ff17e217330e5b432ca953a09f38ed2b4af1f41097ea7b6c": 84.4,
+    "2c3b96113dd834cdb3e02ab51db43af3d462ded2fa4902869f2d5e2a596344c8": 98.4
+  },
+  "rejected": [],
+  "phase": "done",
+  "pending": {}
+}

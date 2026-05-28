@@ -1,0 +1,21 @@
+{
+  "capability_id": "pathology-lazyslide-supervised-classification",
+  "s_cur_path": "candidates/v003/skill/SKILL.md",
+  "s_best_path": "candidates/v003/skill/SKILL.md",
+  "score_cur": 95.4,
+  "score_best": 95.4,
+  "iter_n": 1,
+  "max_iters": 1,
+  "Lt": 4,
+  "pass_threshold": 75,
+  "target_score": 95.0,
+  "cache": {
+    "3d15f71a1c78bbb7fdc9de77443d4219cc5bb2dc2fde98aa4a75e944cd999403": 90.6,
+    "1bcde699757170157c0065c8e8445b07abaa7d5d9ad7ae71d77e46886dce0d72": 82.0,
+    "c43c49aee9657b105d452b3550c8b73688f5d0e063f5ef926f9a5a7e4a4cbbe9": 77.2,
+    "e05a567a24bd876aae1016730d0b92a99afc05b1ca38961ff199ba093c962134": 95.4
+  },
+  "rejected": [],
+  "phase": "done",
+  "pending": {}
+}

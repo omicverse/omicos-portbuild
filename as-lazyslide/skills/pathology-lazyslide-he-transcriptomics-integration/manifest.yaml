@@ -1,0 +1,41 @@
+capability_id: pathology-lazyslide-he-transcriptomics-integration
+kind: skill
+package: lazyslide
+source: https://github.com/RendeiroLab/LazySlide.git
+docs: https://lazyslide.readthedocs.io/en/latest/
+notebooks:
+- Integration with transcriptomics
+cost_profile: gpu-required
+python_env: omicdev
+r_env: CMAP
+splits:
+  train_ratio: 0.2
+  selection_ratio: 0.1
+  test_ratio: 0.7
+optimizer:
+  epochs: 4
+  rollout_batch_size_B: 40
+  minibatch_size_Bm: 8
+  edit_budget_Lt: 4
+  lr_schedule: constant
+  lr_floor: 2
+  slow_update_samples: 20
+  meta_skill_enabled: true
+quality:
+  pass_threshold: 75
+  hard_gate_min: 3
+domain: spatial-he
+title: Paired H&E + transcriptomics integration with LazySlide RNALinker
+key_modules:
+- lazyslide.preprocess
+- lazyslide.tools
+- lazyslide.io
+key_apis:
+- name: lazyslide.tools.feature_extraction + feature_aggregation
+  purpose: WSI FM features + slide-level aggregation
+- name: lazyslide.tools.RNALinker(agg_features, others, gene_name=None)
+  purpose: link image features to paired RNA-seq; .score(groupby, score_group, scale,
+    test_method, n_features, key_added)
+distinct_from: Input REQUIRES paired Visium/RNA AnnData in addition to WSI. Prepares
+  aligned (image, expression) and scores feature-gene associations; does NOT predict
+  expression.

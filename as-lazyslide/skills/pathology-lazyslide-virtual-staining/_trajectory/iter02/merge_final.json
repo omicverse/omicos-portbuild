@@ -1,0 +1,12 @@
+{
+  "reasoning": "pass-through",
+  "edits": [
+    {
+      "op": "insert_after",
+      "target": "## Validation",
+      "content": "\n\n## Quantitative evaluation\n\nWhen ground-truth IHC for a subset of slides exists, compute SSIM and\nPearson correlation between the predicted and observed stain channels.\nGigaTIME typical scores are SSIM > 0.7 and Pearson > 0.6 for trained\nbiomarkers; below 0.5 means the slide is out-of-distribution and the\nprediction should be flagged in the REPORT.html caveat ribbon as\nlow-confidence.\n",
+      "support_count": 1,
+      "source_type": "failure"
+    }
+  ]
+}

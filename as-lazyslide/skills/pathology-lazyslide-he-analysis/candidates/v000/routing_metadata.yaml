@@ -1,0 +1,4 @@
+capability_id: pathology-lazyslide-he-analysis
+kind: skill
+domain: spatial-he
+role: terminal

@@ -1,0 +1,20 @@
+{
+  "batch_size": 1,
+  "failure_summary": [
+    {
+      "failure_type": "no_rosie_code",
+      "count": 1,
+      "description": "ROSIE alternative is listed in Branches but no code path; users default to GigaTIME without considering the lighter ROSIE"
+    }
+  ],
+  "patch": {
+    "reasoning": "pathology-lazyslide-virtual-staining",
+    "edits": [
+      {
+        "op": "insert_after",
+        "target": "## Branches: virtual_stain(wsi, model=...)",
+        "content": "\n\n### Lighter path: ROSIE (tile-level)\n\nWhen compute is tight, ROSIE generates per-tile mean expression instead\nof pixel-level channels:\n\n```python\nimport lazyslide as zs\nzs.pp.tile_tissues(wsi, 256, stride_px=32)\nzs.tl.virtual_stain(wsi, model=\"rosie\")              # writes wsi.images[\"rosie_prediction\"]\nrosie = wsi.images[\"rosie_prediction\"]\nprint(rosie.c.data)                                   # biomarker channel names\nprint(rosie.shape)                                    # (C, n_tiles)\n```\n\nROSIE outputs are ~50x smaller than GigaTIME at the cost of resolution\n(tile-level vs pixel-level). For per-cell quantification downstream,\nGigaTIME is required."
+      }
+    ]
+  }
+}

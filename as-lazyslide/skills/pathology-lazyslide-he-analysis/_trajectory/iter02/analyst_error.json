@@ -1,0 +1,20 @@
+{
+  "batch_size": 1,
+  "failure_summary": [
+    {
+      "failure_type": "no_handoff_to_he_to_st",
+      "count": 1,
+      "description": "no concrete chaining example for he_to_st_predictor → he-analysis prep"
+    }
+  ],
+  "patch": {
+    "reasoning": "iter02",
+    "edits": [
+      {
+        "op": "insert_after",
+        "target": "## Validation",
+        "content": "\n\n## Chaining with he_to_st_predictor\n\nWhen this skill runs as upstream prep for `he_to_st_predictor`, the\nhandoff manifest must include the WSIData zarr + `tiles` shape key. The\ndownstream predictor reads `wsi.shapes[\"tiles\"]` and writes its\nprediction AnnData into `wsi.tables[\"stpath_tiles\"]` (or sibling tables\nfor STFlow / HEST-FM). Do NOT pre-compute `feature_extraction` here if\nSTPath is the downstream — it requires its own gigapath features.\n"
+      }
+    ]
+  }
+}

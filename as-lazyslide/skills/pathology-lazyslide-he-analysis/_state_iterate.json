@@ -1,0 +1,21 @@
+{
+  "capability_id": "pathology-lazyslide-he-analysis",
+  "s_cur_path": "candidates/v003/skill/SKILL.md",
+  "s_best_path": "candidates/v003/skill/SKILL.md",
+  "score_cur": 98.4,
+  "score_best": 98.4,
+  "iter_n": 1,
+  "max_iters": 1,
+  "Lt": 4,
+  "pass_threshold": 75,
+  "target_score": 95.0,
+  "cache": {
+    "991f716bc000f9caf8775447c214c625ffd8eaf2deb26be1775bc6d3be1040c7": 93.8,
+    "dd0a3c1123768ec5fb474935314c33dc09cc8bb30317578b22ca84465eb01e9f": 88.4,
+    "301984ecefcf876766bef425db60a0e0e820eebdbd1857fba81de3f04bc055b2": 84.4,
+    "3da8ab2a870b8201fd7158dd7502db22a981b51cff36a2836548ba9cee205216": 98.4
+  },
+  "rejected": [],
+  "phase": "done",
+  "pending": {}
+}

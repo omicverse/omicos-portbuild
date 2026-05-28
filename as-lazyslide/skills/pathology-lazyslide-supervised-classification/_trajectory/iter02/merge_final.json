@@ -1,0 +1,12 @@
+{
+  "reasoning": "pass-through",
+  "edits": [
+    {
+      "op": "insert_after",
+      "target": "## Validation",
+      "content": "\n\n## Class imbalance\n\nWhen the cohort has class imbalance > 70:30, prefer AUPRC over AUROC and\nuse `class_weight=\"balanced\"` in sklearn heads. For severe imbalance\n(< 20% minority), supplement with focal loss or report per-class\nrecall / precision separately, not just F1.\n",
+      "support_count": 1,
+      "source_type": "failure"
+    }
+  ]
+}

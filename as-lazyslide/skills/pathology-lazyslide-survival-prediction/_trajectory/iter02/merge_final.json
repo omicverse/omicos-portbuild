@@ -1,0 +1,12 @@
+{
+  "reasoning": "pass-through",
+  "edits": [
+    {
+      "op": "insert_after",
+      "target": "## Validation",
+      "content": "\n\n## Minimum cohort size\n\nCox training with TITAN features requires **at least n=80 slides with\nuncensored events**; below that, c-index variance dominates the signal.\nFor cohorts of n=30–80 with mostly uncensored events, prefer the\nsksurv elastic-net path; for n<30, fall back to ranking-only metrics or\nrefuse the run with a clear remediation hint.\n",
+      "support_count": 1,
+      "source_type": "failure"
+    }
+  ]
+}

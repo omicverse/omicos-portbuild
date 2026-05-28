@@ -1,0 +1,31 @@
+capability_id: {{ capability_id }}
+kind: {{ kind | default('capability') }}
+package: {{ package | default('null') }}
+source: {{ source | default('null') }}
+docs: {{ docs | default('null') }}
+notebooks:
+{%- for nb in notebooks | default([]) %}
+  - {{ nb }}
+{%- endfor %}
+cost_profile: {{ cost_profile | default('moderate') }}
+python_env: {{ python_env | default('omicdev') }}
+r_env: {{ r_env | default('CMAP') }}
+
+splits:
+  train_ratio: 0.2
+  selection_ratio: 0.1
+  test_ratio: 0.7
+
+optimizer:
+  epochs: 4
+  rollout_batch_size_B: 40
+  minibatch_size_Bm: 8
+  edit_budget_Lt: 4
+  lr_schedule: constant
+  lr_floor: 2
+  slow_update_samples: 20
+  meta_skill_enabled: true
+
+quality:
+  pass_threshold: 75
+  hard_gate_min: 3

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="ui-monospace, SFMono-Regular, monospace" font-size="11">
+<rect width="100%" height="100%" fill="white"/>
+<text x="60" y="20" font-size="13" font-weight="bold">Skill evolution — pathology-lazyslide-he-analysis</text>
+<text x="60" y="34" font-size="11" fill="#0f172a">selection score vs iteration</text>
+<text x="10" y="130" transform="rotate(-90 10 130)" text-anchor="middle" font-size="10" fill="#475569">score (84.40–98.40)</text>
+<line x1="60" y1="40" x2="60" y2="220" stroke="#94a3b8" stroke-width="0.7"/>
+<line x1="60" y1="220" x2="780" y2="220" stroke="#94a3b8" stroke-width="0.7"/>
+<path d="M 120.0 220.0 L 240.0 168.6 L 360.0 168.6 L 480.0 99.1 L 600.0 99.1 L 720.0 40.0" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+<path d="M 120.0 220.0 L 240.0 168.6 L 360.0 168.6 L 480.0 99.1 L 600.0 99.1 L 720.0 40.0" fill="none" stroke="#15803d" stroke-width="2" stroke-dasharray="4 3"/>
+<circle cx="120.0" cy="220.0" r="3.5" fill="#15803d"/>
+<circle cx="240.0" cy="168.6" r="3.5" fill="#15803d"/>
+<circle cx="360.0" cy="168.6" r="3.5" fill="#15803d"/>
+<circle cx="480.0" cy="99.1" r="3.5" fill="#15803d"/>
+<circle cx="600.0" cy="99.1" r="3.5" fill="#15803d"/>
+<circle cx="720.0" cy="40.0" r="3.5" fill="#15803d"/>
+<g font-size="10"><circle cx="170" cy="32" r="3.5" fill="#15803d"/><text x="180" y="35">accept</text><rect x="230" y="29" width="6" height="6" fill="none" stroke="#b91c1c" stroke-width="1.2"/><text x="240" y="35">reject</text><line x1="290" y1="32" x2="310" y2="32" stroke="#15803d" stroke-width="2" stroke-dasharray="4 3"/><text x="315" y="35">score_best</text></g>
+<text x="60" y="244" font-size="11" fill="#0f172a">edit economy — n_applied per step (max=1)</text>
+<text x="10" y="340" transform="rotate(-90 10 340)" text-anchor="middle" font-size="10" fill="#475569">edits / cumulative</text>
+<line x1="60" y1="250" x2="60" y2="430" stroke="#94a3b8" stroke-width="0.7"/>
+<line x1="60" y1="430" x2="780" y2="430" stroke="#94a3b8" stroke-width="0.7"/>
+<rect x="87.0" y="250.0" width="66.0" height="180.0" fill="#2563eb"/>
+<rect x="207.0" y="250.0" width="66.0" height="180.0" fill="#2563eb"/>
+<rect x="327.0" y="250.0" width="66.0" height="180.0" fill="#2563eb"/>
+<rect x="447.0" y="250.0" width="66.0" height="180.0" fill="#2563eb"/>
+<rect x="567.0" y="250.0" width="66.0" height="180.0" fill="#2563eb"/>
+<rect x="687.0" y="250.0" width="66.0" height="180.0" fill="#2563eb"/>
+<path d="M 120.0 250.0 L 240.0 250.0 L 360.0 250.0 L 480.0 250.0 L 600.0 250.0 L 720.0 250.0" fill="none" stroke="#7c3aed" stroke-width="1.5"/>
+<text x="120.0" y="444" text-anchor="middle" font-size="10" fill="#475569">0</text>
+<text x="240.0" y="444" text-anchor="middle" font-size="10" fill="#475569">1</text>
+<text x="360.0" y="444" text-anchor="middle" font-size="10" fill="#475569">2</text>
+<text x="480.0" y="444" text-anchor="middle" font-size="10" fill="#475569">3</text>
+<text x="600.0" y="444" text-anchor="middle" font-size="10" fill="#475569">4</text>
+<text x="720.0" y="444" text-anchor="middle" font-size="10" fill="#475569">5</text>
+<text x="400" y="465" text-anchor="middle" font-size="11">iteration</text>
+</svg>

@@ -1,0 +1,1 @@
+{"reasoning": "all merged", "edits": [{"op": "append", "content": "Document the `method='advanced'` branch explicitly.", "support_count": 2, "source_type": "failure"}]}

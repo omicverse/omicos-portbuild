@@ -1,0 +1,25 @@
+capability_id: evo_capability
+kind: capability
+package: fake
+source: null
+docs: null
+notebooks: []
+cost_profile: cheap
+python_env: omicdev
+r_env: CMAP
+splits:
+  train_ratio: 0.2
+  selection_ratio: 0.1
+  test_ratio: 0.7
+optimizer:
+  epochs: 4
+  rollout_batch_size_B: 40
+  minibatch_size_Bm: 8
+  edit_budget_Lt: 4
+  lr_schedule: constant
+  lr_floor: 2
+  slow_update_samples: 20
+  meta_skill_enabled: true
+quality:
+  pass_threshold: 75
+  hard_gate_min: 3

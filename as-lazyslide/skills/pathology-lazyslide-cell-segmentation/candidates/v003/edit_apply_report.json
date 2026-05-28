@@ -1,0 +1,15 @@
+{
+  "n_edits": 1,
+  "n_applied": 1,
+  "n_skipped": 0,
+  "results": [
+    {
+      "index": 0,
+      "op": "insert_after",
+      "status": "applied",
+      "reason": "",
+      "target_preview": "## Chaining with artifact filtering",
+      "content_preview": "\n\n## Handoff to spatial_omics_orchestrator\n\nWhen the user wants downstream cell-"
+    }
+  ]
+}

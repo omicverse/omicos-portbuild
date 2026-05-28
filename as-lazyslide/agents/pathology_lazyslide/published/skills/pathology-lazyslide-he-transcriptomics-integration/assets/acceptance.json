@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "skill": "pathology-lazyslide-he-transcriptomics-integration",
+  "sample_requests": [
+    "我有 50 张配对 H&E + bulk RNA-seq，请用 LazySlide RNALinker(t-test, n_features=100) 找出与 ESR1-high 组关联的图像特征。",
+    "Run paired image-expression integration on 80 slides with feature_extraction model='uni2' + RNALinker.score(groupby='subtype', score_group='basal', test_method='wilcoxon')."
+  ],
+  "required_description_terms": ["lazyslide", "rnalinker"],
+  "required_sections": ["## Goal", "## Quick Workflow", "## Branches: RNALinker.score parameters", "## Validation"],
+  "required_body_terms": ["feature_extraction", "feature_aggregation", "agg_wsi", "RNALinker", "association_score"],
+  "required_paths": ["references/source-grounding.md"],
+  "smoke_commands": [
+    {
+      "name": "lazyslide_rnalinker_imports",
+      "tier": "import",
+      "command": "${PYTHON} -c \"import lazyslide as zs; from lazyslide.tools import RNALinker; from wsidata import open_wsi, agg_wsi; import scanpy as sc; print('imports OK')\"",
+      "conda_env": "omicdev",
+      "timeout_seconds": 30,
+      "expect_stdout_contains": ["imports OK"],
+      "expect_stderr_contains": []
+    }
+  ],
+  "validation_budget": {
+    "smoke_mode": "import_only",
+    "max_wall_seconds": 120,
+    "skip_reason": ""
+  }
+}

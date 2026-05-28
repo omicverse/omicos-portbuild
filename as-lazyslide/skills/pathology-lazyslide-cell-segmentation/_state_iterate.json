@@ -1,0 +1,21 @@
+{
+  "capability_id": "pathology-lazyslide-cell-segmentation",
+  "s_cur_path": "candidates/v003/skill/SKILL.md",
+  "s_best_path": "candidates/v003/skill/SKILL.md",
+  "score_cur": 98.4,
+  "score_best": 98.4,
+  "iter_n": 1,
+  "max_iters": 1,
+  "Lt": 4,
+  "pass_threshold": 75,
+  "target_score": 95.0,
+  "cache": {
+    "738d4fddbbc74593264f939da84e26100055210b252e9581d18ef8bf41cf98ff": 93.8,
+    "7899ece56ceee61b93afe295d08de9f1e7e7ed830d1a7de7035397a2c9c2bfa6": 88.4,
+    "85bd7c0355e3f775324bcf221339bdf4940ed850a2a08e9bf99f06f370ccef19": 84.4,
+    "6cee6af40107cbcfd393fe6083b8cdfbbeeb88e5542e491b39d8e6e8e9b7b87d": 98.4
+  },
+  "rejected": [],
+  "phase": "done",
+  "pending": {}
+}

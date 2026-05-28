@@ -1,0 +1,20 @@
+{
+  "capability_id": "pathology-lazyslide-survival-prediction",
+  "s_cur_path": "candidates/v002/skill/SKILL.md",
+  "s_best_path": "candidates/v002/skill/SKILL.md",
+  "score_cur": 96.8,
+  "score_best": 96.8,
+  "iter_n": 1,
+  "max_iters": 1,
+  "Lt": 4,
+  "pass_threshold": 75,
+  "target_score": 95.0,
+  "cache": {
+    "4af1c61d3671fa7c73e76d2c6342134e1c1f8f093a00eace0ec2124d50cef850": 91.4,
+    "c1f5f3f2e3dc7ea2bd4682988f6e505df309b1643589690909e03ece5a8aa2ea": 86.0,
+    "fa8fcf324d512fd3404d8d1e42bba67ccdd160d5d892af8be10092349e1e704c": 96.8
+  },
+  "rejected": [],
+  "phase": "done",
+  "pending": {}
+}

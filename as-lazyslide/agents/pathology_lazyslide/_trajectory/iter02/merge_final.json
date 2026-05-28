@@ -1,0 +1,12 @@
+{
+  "reasoning": "pass-through",
+  "edits": [
+    {
+      "op": "insert_after",
+      "target": "## Routing priority vs siblings",
+      "content": "\n\n## Worked dispatches (3 representative cases)\n\n**Case 1**: User says \"I have a breast H&E and want to know if there is a lot of TILs.\"\n→ Single-slide morphology intent. Ask: organ confirmed (breast) ✓; HF gate ok? Run **pathology-lazyslide-he-analysis** with `feature_extraction(wsi, \"uni2\")` + zero-shot prompts `[\"TIL-rich\", \"TIL-poor\"]`.\n\n**Case 2**: User says \"Compare TNBC vs luminal subtype on 200 H&E slides; AUROC > 0.8 acceptable.\"\n→ Cohort + known labels + supervised intent. Ask: label column? GPU? Run **pathology-lazyslide-supervised-classification** with `feature_aggregation(encoder=\"mean\")` + sklearn `LogisticRegression` + 5-fold CV.\n\n**Case 3**: User says \"Run cell segmentation on this slide and predict virtual CD8 staining at the cell level.\"\n→ Composite intent crossing cell-segmentation + virtual-staining. Run **cell_segmentation** first (cell polygons), then **virtual_staining** with `model=\"gigatime\"`, then aggregate per-cell CD8 means by intersecting `wsi.shapes[\"cells\"]` with `wsi.images[\"gigatime_prediction\"]`. Combine into ONE outputs/<run_id>/ directory.\n",
+      "support_count": 1,
+      "source_type": "failure"
+    }
+  ]
+}

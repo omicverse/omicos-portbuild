@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "skill": "pathology-lazyslide-supervised-classification",
+  "sample_requests": [
+    "Train a TNBC vs non-TNBC classifier on 200 breast H&E slides with UNI2 features + PRISM aggregation + sklearn LogisticRegression.",
+    "用 LazySlide + sklearn 训一个胃癌 Lauren subtype 三分类，报告 AUROC + calibration"
+  ],
+  "required_description_terms": ["lazyslide", "classifier", "auroc"],
+  "required_sections": ["## Goal", "## Quick Workflow", "## Branches: aggregator + head", "## Validation"],
+  "required_body_terms": ["feature_extraction", "feature_aggregation", "agg_wsi", "train_test_split", "roc_auc_score"],
+  "required_paths": ["references/source-grounding.md"],
+  "smoke_commands": [
+    {
+      "name": "lazyslide_classification_imports",
+      "tier": "import",
+      "command": "${PYTHON} -c \"import lazyslide as zs; from wsidata import open_wsi, agg_wsi; from sklearn.linear_model import LogisticRegression; from sklearn.metrics import roc_auc_score; print('imports OK')\"",
+      "conda_env": "omicdev",
+      "timeout_seconds": 30,
+      "expect_stdout_contains": ["imports OK"],
+      "expect_stderr_contains": []
+    }
+  ],
+  "validation_budget": {
+    "smoke_mode": "import_only",
+    "max_wall_seconds": 120,
+    "skip_reason": ""
+  }
+}

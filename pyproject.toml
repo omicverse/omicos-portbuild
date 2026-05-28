@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "omicos-portbuild"
+version = "0.2.0"
+description = "Port a third-party scientific Python package into an OmicOS agent + skill bundle. Rebuildr-style protocol + engine; SkillOpt iteration to production-grade artifacts."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "BSD-2-Clause" }
+authors = [{ name = "OmicOS contributors" }]
+dependencies = [
+    "PyYAML>=6.0",
+    "jinja2>=3.1",
+    "requests>=2.31",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.scripts]
+omicos-portbuild = "factory.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["factory*"]
+exclude = ["tests*", "targets*"]
+
+[tool.setuptools.package-data]
+factory = [
+    "prompt_contracts/*.md",
+    "templates/*.j2",
+]

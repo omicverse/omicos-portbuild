@@ -1,0 +1,12 @@
+{
+  "reasoning": "pass-through",
+  "edits": [
+    {
+      "op": "insert_after",
+      "target": "## Chaining with artifact filtering",
+      "content": "\n\n## Handoff to spatial_omics_orchestrator\n\nWhen the user wants downstream cell-cell communication, niche detection,\nor spatial domain analysis on the segmented cells, the handoff_manifest\nshould include:\n\n```json\n{\n  \"shapes_keys\": [\"tissues\", \"tiles\", \"cells\", \"cell_types\"],\n  \"next_agent_hints\": [\"spatial_omics_orchestrator: pass wsi.shapes['cells'] as the cell-level GeoDataFrame; downstream can build neighbor graph via zs.pp.tile_graph or sklearn NearestNeighbors on cell centroids\"]\n}\n```\n",
+      "support_count": 1,
+      "source_type": "failure"
+    }
+  ]
+}

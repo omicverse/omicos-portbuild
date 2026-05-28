@@ -1,0 +1,12 @@
+{
+  "reasoning": "pass-through",
+  "edits": [
+    {
+      "op": "insert_after",
+      "target": "## Validation",
+      "content": "\n\n## Alignment failure modes\n\nThe `agg_features.n_obs == rna.n_obs` check is necessary but not\nsufficient. Also verify:\n\n- `agg_features.obs.index.equals(rna.obs.index)` — ordering must match,\n  not just count\n- No duplicate sample_ids on either side\n- Censored / missing samples are dropped consistently on BOTH sides\n- For paired multiomics, also confirm `rna.var` does not contain features\n  that should have been filtered (mito / ribo)\n\nIf any fail, abort and surface which sample_ids are mismatched.",
+      "support_count": 1,
+      "source_type": "failure"
+    }
+  ]
+}

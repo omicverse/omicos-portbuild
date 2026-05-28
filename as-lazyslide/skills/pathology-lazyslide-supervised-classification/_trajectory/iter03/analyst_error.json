@@ -1,0 +1,20 @@
+{
+  "batch_size": 1,
+  "failure_summary": [
+    {
+      "failure_type": "no_calibration_guidance",
+      "count": 1,
+      "description": "calibration is mentioned in delivery contract but no guidance on Platt scaling vs isotonic vs temperature scaling per head type"
+    }
+  ],
+  "patch": {
+    "reasoning": "iter03",
+    "edits": [
+      {
+        "op": "insert_after",
+        "target": "## Class imbalance",
+        "content": "\n\n## Calibration per head type\n\n- sklearn `LogisticRegression`: use `CalibratedClassifierCV(method=\"isotonic\", cv=5)` wrapper for non-binary settings; `method=\"sigmoid\"` (Platt) for binary with > 200 samples.\n- sklearn `RandomForestClassifier`: always isotonic with `cv=5`; uncalibrated RF predict_proba is notoriously over-confident.\n- PyTorch MLP: temperature scaling on a held-out calibration split; record the learned temperature in summary.json for reproducibility.\n\nReport Brier score and reliability diagram (10 bins) alongside AUROC.\n"
+      }
+    ]
+  }
+}

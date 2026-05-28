@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "skill": "pathology-lazyslide-survival-prediction",
+  "sample_requests": [
+    "Train a survival model on a TCGA-READ cohort: TITAN feature extraction + CoxnetSurvivalAnalysis + report c-index + KM curves.",
+    "Compare sksurv CoxnetSurvivalAnalysis vs torchsurv CoxMLP on this 80-slide cohort; we want test c-index above 0.7."
+  ],
+  "required_description_terms": ["lazyslide", "titan", "cox", "c-index"],
+  "required_sections": ["## Goal", "## Quick Workflow", "## Branches: Cox head backend", "## Validation"],
+  "required_body_terms": ["feature_extraction", "feature_aggregation", "titan", "CoxnetSurvivalAnalysis", "ConcordanceIndex", "agg_wsi"],
+  "required_paths": ["references/source-grounding.md"],
+  "smoke_commands": [
+    {
+      "name": "lazyslide_survival_imports",
+      "tier": "import",
+      "command": "${PYTHON} -c \"import lazyslide as zs; import wsidata; assert callable(zs.tl.feature_extraction); assert callable(zs.tl.feature_aggregation); print('imports OK')\"",
+      "conda_env": "omicdev",
+      "timeout_seconds": 30,
+      "expect_stdout_contains": ["imports OK"],
+      "expect_stderr_contains": []
+    },
+    {
+      "name": "sksurv_torchsurv_imports",
+      "tier": "import",
+      "command": "${PYTHON} -c \"from sksurv.linear_model import CoxnetSurvivalAnalysis; import torchsurv; print('survival backends OK')\"",
+      "conda_env": "omicdev",
+      "timeout_seconds": 30,
+      "expect_stdout_contains": ["survival backends OK"],
+      "expect_stderr_contains": []
+    }
+  ],
+  "validation_budget": {
+    "smoke_mode": "import_only",
+    "max_wall_seconds": 120,
+    "skip_reason": ""
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "n_edits": 1,
+  "n_applied": 1,
+  "n_skipped": 0,
+  "results": [
+    {
+      "index": 0,
+      "op": "insert_after",
+      "status": "applied",
+      "reason": "",
+      "target_preview": "## Branches: virtual_stain(wsi, model=...)",
+      "content_preview": "\n\n### Lighter path: ROSIE (tile-level)\n\nWhen compute is tight, ROSIE generates p"
+    }
+  ]
+}

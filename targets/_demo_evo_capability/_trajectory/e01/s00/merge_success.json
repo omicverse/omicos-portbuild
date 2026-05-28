@@ -1,0 +1,1 @@
+{"reasoning": "one success edit", "edits": [{"op": "append", "content": "Always confirm tile shape (n, 3, 224, 224) before embedding.", "support_count": 1, "source_type": "success"}]}

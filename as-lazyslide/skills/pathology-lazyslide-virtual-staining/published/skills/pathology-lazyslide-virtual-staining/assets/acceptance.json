@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "skill": "pathology-lazyslide-virtual-staining",
+  "sample_requests": [
+    "Run GigaTIME virtual staining on this H&E slide; show me a 50-channel grid overlay and flag the model-proxy caveat.",
+    "Use ROSIE for tile-level virtual staining for faster turnaround on this WSI."
+  ],
+  "required_description_terms": ["lazyslide", "virtual_stain", "h&e"],
+  "required_sections": ["## Goal", "## Quick Workflow", "## Branches: virtual_stain(wsi, model=...)", "## Validation"],
+  "required_body_terms": ["virtual_stain", "gigatime", "rosie", "wsi.images", "find_tissues", "tile_tissues"],
+  "required_paths": ["references/source-grounding.md"],
+  "smoke_commands": [
+    {
+      "name": "lazyslide_virtual_stain_imports",
+      "tier": "import",
+      "command": "${PYTHON} -c \"import lazyslide as zs; import wsidata; assert callable(zs.tl.virtual_stain); print('virtual_stain OK')\"",
+      "conda_env": "omicdev",
+      "timeout_seconds": 30,
+      "expect_stdout_contains": ["virtual_stain OK"],
+      "expect_stderr_contains": []
+    }
+  ],
+  "validation_budget": {
+    "smoke_mode": "import_only",
+    "max_wall_seconds": 120,
+    "skip_reason": ""
+  }
+}

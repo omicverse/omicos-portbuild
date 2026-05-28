@@ -1,0 +1,15 @@
+{
+  "n_edits": 1,
+  "n_applied": 1,
+  "n_skipped": 0,
+  "results": [
+    {
+      "index": 0,
+      "op": "insert_after",
+      "status": "applied",
+      "reason": "",
+      "target_preview": "## Branches: RNALinker.score parameters",
+      "content_preview": "\n\n### Worked invocation\n\nGiven `agg_features = agg_wsi(meta, wsi_col=\"slide_path"
+    }
+  ]
+}

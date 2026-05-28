@@ -1,0 +1,20 @@
+{
+  "batch_size": 1,
+  "failure_summary": [
+    {
+      "failure_type": "no_class_imbalance_note",
+      "count": 1,
+      "description": "class imbalance affects AUROC interpretation; no guidance for imbalanced subtype cohorts"
+    }
+  ],
+  "patch": {
+    "reasoning": "iter02",
+    "edits": [
+      {
+        "op": "insert_after",
+        "target": "## Validation",
+        "content": "\n\n## Class imbalance\n\nWhen the cohort has class imbalance > 70:30, prefer AUPRC over AUROC and\nuse `class_weight=\"balanced\"` in sklearn heads. For severe imbalance\n(< 20% minority), supplement with focal loss or report per-class\nrecall / precision separately, not just F1.\n"
+      }
+    ]
+  }
+}

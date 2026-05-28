@@ -1,0 +1,38 @@
+{
+  "capability_id": "evo_capability",
+  "epoch": 1,
+  "step": 2,
+  "total_epochs": 4,
+  "Lt_eff": 4,
+  "s_cur_path": "candidates/v001/skill/SKILL.md",
+  "s_best_path": "candidates/v001/skill/SKILL.md",
+  "score_cur": 0.62,
+  "score_best": 0.62,
+  "cache": {
+    "eda06e51c114ab0a8a5e3cc6ff2b2aedd1113e8831bbc9c013d84ac842a25848": 0.5,
+    "79ec04717fbd610f61514bdc702f2b02acc5e25b8379ae65e9c8ae1a27c6eed6": 0.62,
+    "35c26d2185dd48b006bb6d97ade2fdee0424155b9cf126b9a6dcdd7908953ca0": 0.58
+  },
+  "rejected_buffer": [
+    {
+      "epoch": 1,
+      "step": 1,
+      "edits_json_path": null,
+      "score_drop": 0.040000000000000036
+    }
+  ],
+  "failure_pattern_buffer": [
+    {
+      "failure_type": "missing_branch_coverage",
+      "count": 2,
+      "description": "method= branch missing"
+    }
+  ],
+  "m_meta_path": null,
+  "phase": "done",
+  "pending": {
+    "previous_epoch_skill": "candidates/v001/skill/SKILL.md",
+    "current_epoch_skill": "candidates/v001/skill/SKILL.md",
+    "out_json": "_trajectory/e01/slow_update.json"
+  }
+}

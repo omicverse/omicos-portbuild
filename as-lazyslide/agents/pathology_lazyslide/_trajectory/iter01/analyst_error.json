@@ -1,0 +1,20 @@
+{
+  "batch_size": 1,
+  "failure_summary": [
+    {
+      "failure_type": "no_explicit_admin_routing_hook",
+      "count": 1,
+      "description": "agent body does not document how the OmicOS runtime should rank this agent vs sibling pathology agents (he_to_st_predictor, spatial_omics_orchestrator) when use_when intents partially overlap"
+    }
+  ],
+  "patch": {
+    "reasoning": "iter01",
+    "edits": [
+      {
+        "op": "insert_after",
+        "target": "## Delivery contract",
+        "content": "\n\n## Routing priority vs siblings\n\nWhen the OmicOS runtime has multiple matching agents:\n\n- THIS agent ranks **highest** when input is H&E pixels + user wants\n  morphology / cell / classification / survival / RNALinker association /\n  virtual staining.\n- `he_to_st_predictor` ranks higher than this agent for explicit\n  \"predict gene expression from H&E\" intents — the runtime should\n  prefer it even if this agent also matches.\n- `spatial_omics_orchestrator` ranks higher for \"downstream spatial-omics\n  on existing AnnData\" intents.\n- `scientific_writer` takes over once a report is produced.\n\nFor ambiguous intents (user has BOTH H&E and intent for molecular\nprediction), both agents may run sequentially — this agent first as\nupstream WSI prep, then `he_to_st_predictor` as the molecular layer.\n"
+      }
+    ]
+  }
+}

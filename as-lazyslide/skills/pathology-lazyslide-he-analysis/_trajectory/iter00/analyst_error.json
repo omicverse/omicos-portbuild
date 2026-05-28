@@ -1,0 +1,20 @@
+{
+  "batch_size": 1,
+  "failure_summary": [
+    {
+      "failure_type": "no_explicit_pool_mode",
+      "count": 1,
+      "description": "`feature_extraction` has a `pool_mode` parameter (cls / cls_patch_mean) that materially affects feature quality but is not surfaced in Quick Workflow"
+    }
+  ],
+  "patch": {
+    "reasoning": "pathology-lazyslide-he-analysis",
+    "edits": [
+      {
+        "op": "insert_after",
+        "target": "## Branches: feature_extraction(wsi, model)",
+        "content": "\n\n### Pool-mode sub-branch\n\n`zs.tl.feature_extraction(wsi, model, pool_mode=...)` accepts `Literal[\"cls\", \"cls_patch_mean\"]`. CLS-only is faster and matches PRISM's expectation for the slide-encoder step; `cls_patch_mean` is denser and helps when the downstream task needs sub-tile texture (e.g. zero-shot heatmaps). When in doubt, use `pool_mode=\"cls\"` for PRISM-bound pipelines and `pool_mode=\"cls_patch_mean\"` for direct feature inspection."
+      }
+    ]
+  }
+}

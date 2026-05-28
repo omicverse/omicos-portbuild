@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skill": "evo-capability",
+  "sample_requests": ["TODO — at least one realistic user request"],
+  "required_description_terms": [],
+  "required_sections": ["## Goal", "## Quick Workflow", "## Validation"],
+  "required_body_terms": [],
+  "required_paths": [],
+  "smoke_commands": [],
+  "validation_budget": {
+    "smoke_mode": "full",
+    "max_wall_seconds": 300,
+    "skip_reason": ""
+  }
+}

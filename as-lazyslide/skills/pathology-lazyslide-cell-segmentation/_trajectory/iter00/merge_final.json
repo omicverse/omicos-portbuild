@@ -1,0 +1,12 @@
+{
+  "reasoning": "pass-through",
+  "edits": [
+    {
+      "op": "insert_after",
+      "target": "## Branches: model selection",
+      "content": "\n\n### Low-level runner: `seg.CellSegmentationRunner`\n\nWhen the user needs per-cell FEATURES (not just polygons), instantiate\n`seg.CellSegmentationRunner` directly with `extract_features=True`. The\nrunner returns an `AnnData` (one row per cell) alongside the polygons,\nready for downstream supervised heads:\n\n```python\nrunner = zs.seg.CellSegmentationRunner(\n    wsi, model=\"instanseg\", tile_key=\"tiles\",\n    extract_features=True, size_filter=True, nucleus_size=(20, 1000),\n)\nrunner.run()                                 # writes wsi.shapes[\"cells\"] + wsi.tables[\"cells_features\"]\n```\n",
+      "support_count": 1,
+      "source_type": "failure"
+    }
+  ]
+}

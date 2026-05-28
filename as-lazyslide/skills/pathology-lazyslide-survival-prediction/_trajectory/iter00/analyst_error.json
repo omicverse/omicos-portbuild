@@ -1,0 +1,20 @@
+{
+  "batch_size": 1,
+  "failure_summary": [
+    {
+      "failure_type": "no_km_code_block",
+      "count": 1,
+      "description": "tutorial mentions Kaplan-Meier + log-rank but Quick Workflow has no code block; reviewers re-derive the call from sksurv docs"
+    }
+  ],
+  "patch": {
+    "reasoning": "pathology-lazyslide-survival-prediction",
+    "edits": [
+      {
+        "op": "insert_after",
+        "target": "## Branches: Cox head backend",
+        "content": "\n\n### Kaplan-Meier + log-rank (post-prediction)\n\nAfter Cox training, stratify slides by predicted-risk tercile and run\nKM + log-rank inside `sksurv`:\n\n```python\nfrom sksurv.nonparametric import kaplan_meier_estimator\nfrom sksurv.compare import compare_survival\nadata.obs[\"risk_tercile\"] = pd.qcut(adata.obs[\"predicted_risk\"], 3, labels=False)\nfor t in (0, 1, 2):\n    mask = adata.obs[\"risk_tercile\"] == t\n    times, surv, ci = kaplan_meier_estimator(\n        adata.obs[\"status\"][mask], adata.obs[\"OS_MONTHS\"][mask], conf_type=\"log-log\")\nchi2, p = compare_survival(\n    adata.obs[[\"status\", \"OS_MONTHS\"]].to_records(index=False),\n    adata.obs[\"risk_tercile\"])\n```\n"
+      }
+    ]
+  }
+}

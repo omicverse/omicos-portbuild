@@ -1,0 +1,12 @@
+{
+  "reasoning": "pass-through",
+  "edits": [
+    {
+      "op": "insert_after",
+      "target": "## Branches: RNALinker.score parameters",
+      "content": "\n\n### Worked invocation\n\nGiven `agg_features = agg_wsi(meta, wsi_col=\"slide_path\", feature_key=\"uni2\")`\naligned with a paired `rna` AnnData by `sample_id`:\n\n```python\nfrom lazyslide.tools import RNALinker\nlinker = RNALinker(agg_features=agg_features, others=rna, gene_name=None)\nlinker.score(\n    groupby=\"ESR1_high\",          # bool column in adata.obs\n    score_group=True,\n    scale=True,\n    test_method=\"wilcoxon\",\n    n_features=100,\n    key_added=\"association_score\",\n)\n# Result: agg_features.obs[\"association_score\"] (per-slide)\n#         + features ranked in agg_features.uns\n```\n",
+      "support_count": 1,
+      "source_type": "failure"
+    }
+  ]
+}

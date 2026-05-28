@@ -1,0 +1,23 @@
+{
+  "n_edits": 2,
+  "n_applied": 2,
+  "n_skipped": 0,
+  "results": [
+    {
+      "index": 0,
+      "op": "append",
+      "status": "applied",
+      "reason": "",
+      "target_preview": "",
+      "content_preview": "Document the `method='advanced'` branch explicitly."
+    },
+    {
+      "index": 1,
+      "op": "append",
+      "status": "applied",
+      "reason": "",
+      "target_preview": "",
+      "content_preview": "Always confirm tile shape (n, 3, 224, 224) before embedding."
+    }
+  ]
+}

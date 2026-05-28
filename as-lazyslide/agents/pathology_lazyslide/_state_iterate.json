@@ -1,0 +1,20 @@
+{
+  "capability_id": "pathology_lazyslide",
+  "s_cur_path": "candidates/v002/agent.md",
+  "s_best_path": "candidates/v002/agent.md",
+  "score_cur": 98.4,
+  "score_best": 98.4,
+  "iter_n": 1,
+  "max_iters": 1,
+  "Lt": 4,
+  "pass_threshold": 75,
+  "target_score": 95.0,
+  "cache": {
+    "2831477b70be023974260f329446622c508892126ce5cc79bf4ffae25fb8f30f": 91.4,
+    "d06396560d1a9dd3b0c4ed7bca4ce9eed2f0afc0512792c264dee0c6b851eba8": 89.8,
+    "c27adf90388206c5bce914c69bd6a9a3c344167d2b3308689462d7bb7720b9b8": 98.4
+  },
+  "rejected": [],
+  "phase": "done",
+  "pending": {}
+}

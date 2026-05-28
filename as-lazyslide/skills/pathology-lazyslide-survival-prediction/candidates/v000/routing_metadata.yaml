@@ -1,0 +1,4 @@
+capability_id: pathology-lazyslide-survival-prediction
+kind: skill
+domain: spatial-he
+role: terminal

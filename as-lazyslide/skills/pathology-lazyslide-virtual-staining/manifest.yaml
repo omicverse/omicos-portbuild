@@ -1,0 +1,39 @@
+capability_id: pathology-lazyslide-virtual-staining
+kind: skill
+package: lazyslide
+source: https://github.com/RendeiroLab/LazySlide.git
+docs: https://lazyslide.readthedocs.io/en/latest/
+notebooks:
+- Virtual Staining
+cost_profile: gpu-required
+python_env: omicdev
+r_env: CMAP
+splits:
+  train_ratio: 0.2
+  selection_ratio: 0.1
+  test_ratio: 0.7
+optimizer:
+  epochs: 4
+  rollout_batch_size_B: 40
+  minibatch_size_Bm: 8
+  edit_budget_Lt: 4
+  lr_schedule: constant
+  lr_floor: 2
+  slow_update_samples: 20
+  meta_skill_enabled: true
+quality:
+  pass_threshold: 75
+  hard_gate_min: 3
+domain: spatial-he
+title: Virtual multiplex staining from H&E with LazySlide
+key_modules:
+- lazyslide.preprocess
+- lazyslide.tools
+key_apis:
+- name: lazyslide.preprocess.tile_tissues(wsi, 256, stride_px=32)
+  purpose: 256-px tiling with 32-px stride
+- name: lazyslide.tools.virtual_stain(wsi, model='gigatime')
+  purpose: generate virtual stain channels; output to wsi.images['gigatime_prediction'];
+    up to 50 biomarker channels
+distinct_from: Output is GENERATED IMAGES (per-channel stain reconstructions in wsi.images),
+  not geometric shapes or feature tables.

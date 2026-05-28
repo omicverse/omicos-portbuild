@@ -1,0 +1,15 @@
+{
+  "n_edits": 1,
+  "n_applied": 1,
+  "n_skipped": 0,
+  "results": [
+    {
+      "index": 0,
+      "op": "insert_after",
+      "status": "applied",
+      "reason": "",
+      "target_preview": "## Validation",
+      "content_preview": "\n\n## Chaining with he_to_st_predictor\n\nWhen this skill runs as upstream prep for"
+    }
+  ]
+}

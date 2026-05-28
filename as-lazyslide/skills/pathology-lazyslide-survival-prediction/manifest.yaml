@@ -1,0 +1,42 @@
+capability_id: pathology-lazyslide-survival-prediction
+kind: skill
+package: lazyslide
+source: https://github.com/RendeiroLab/LazySlide.git
+docs: https://lazyslide.readthedocs.io/en/latest/
+notebooks:
+- Survival prediction with cancer WSIs
+cost_profile: gpu-required
+python_env: omicdev
+r_env: CMAP
+splits:
+  train_ratio: 0.2
+  selection_ratio: 0.1
+  test_ratio: 0.7
+optimizer:
+  epochs: 4
+  rollout_batch_size_B: 40
+  minibatch_size_Bm: 8
+  edit_budget_Lt: 4
+  lr_schedule: constant
+  lr_floor: 2
+  slow_update_samples: 20
+  meta_skill_enabled: true
+quality:
+  pass_threshold: 75
+  hard_gate_min: 3
+domain: spatial-he
+title: Survival prediction from cancer WSIs with LazySlide TITAN
+key_modules:
+- lazyslide.preprocess
+- lazyslide.tools
+key_apis:
+- name: lazyslide.preprocess.tile_tissues(wsi, 448, mpp=0.5, background_fraction=0.5)
+  purpose: tiling at 448px for TITAN
+- name: lazyslide.tools.feature_extraction(wsi, 'titan')
+  purpose: TITAN encoder tile features
+- name: lazyslide.tools.feature_aggregation(wsi, 'titan', encoder='titan')
+  purpose: 768-dim slide embedding
+- name: sksurv.CoxnetSurvivalAnalysis OR torchsurv CoxMLP
+  purpose: Cox survival head
+distinct_from: Output is hazard / risk score / time-to-event with censoring; uses
+  TITAN (not UNI/Virchow).

@@ -1,0 +1,38 @@
+---
+icon: {{ icon | default('🧪') }}
+id: {{ capability_id }}
+name: {{ name }}
+title: {{ title }}
+description: {{ description }}
+category: {{ category | default('TODO') }}
+category_order: {{ category_order | default(100) }}
+tier: {{ tier | default('pro') }}
+summary: {{ summary }}
+use_when: |
+  {{ use_when | indent(2) }}
+example_prompts:
+{%- for prompt in example_prompts | default([]) %}
+  - "{{ prompt }}"
+{%- endfor %}
+example_inputs:
+{%- for inp in example_inputs | default([]) %}
+  - input: "{{ inp.input }}"
+    output: "{{ inp.output }}"
+{%- endfor %}
+toolsets:
+{%- for ts in toolsets | default(['file_manager', 'python_interpreter', 'shell', 'plan', 'think', 'task', 'skill', 'memory']) %}
+  - {{ ts }}
+{%- endfor %}
+skills:
+{%- for sk in skills | default([]) %}
+  - {{ sk }}
+{%- endfor %}
+{%- if domain %}
+domain: {{ domain }}
+{%- endif %}
+{%- if role %}
+role: {{ role }}
+{%- endif %}
+---
+
+You are **{{ name }}**. {{ persona_body }}

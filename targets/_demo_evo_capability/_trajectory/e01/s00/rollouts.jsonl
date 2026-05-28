@@ -1,0 +1,5 @@
+{"task_id": "t0", "score": 0.0, "success": false, "trace": "fake-trace"}
+{"task_id": "t1", "score": 0.0, "success": false, "trace": "fake-trace"}
+{"task_id": "t2", "score": 0.0, "success": false, "trace": "fake-trace"}
+{"task_id": "t3", "score": 1.0, "success": true, "trace": "fake-trace"}
+{"task_id": "t4", "score": 1.0, "success": true, "trace": "fake-trace"}

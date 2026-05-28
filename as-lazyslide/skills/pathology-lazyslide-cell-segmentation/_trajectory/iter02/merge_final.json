@@ -1,0 +1,12 @@
+{
+  "reasoning": "pass-through",
+  "edits": [
+    {
+      "op": "insert_after",
+      "target": "## Validation",
+      "content": "\n\n## Chaining with artifact filtering\n\nFor real-world slides, run `seg.artifact` BEFORE `seg.cells` and filter\nout artifact-overlapping cells post-hoc:\n\n```python\nzs.seg.artifact(wsi, tile_key=\"tiles\", model=\"grandqc\")        # adds wsi.shapes[\"artifacts\"]\nzs.seg.cells(wsi, model=\"instanseg\")                           # cells\nartifacts_union = wsi.shapes[\"artifacts\"].unary_union\nclean_cells = wsi.shapes[\"cells\"][~wsi.shapes[\"cells\"].geometry.intersects(artifacts_union)]\n```\n",
+      "support_count": 1,
+      "source_type": "failure"
+    }
+  ]
+}

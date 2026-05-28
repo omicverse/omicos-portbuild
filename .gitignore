@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+
+# Notebook clutter
+.ipynb_checkpoints/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*~
+
+# Virtual envs (shouldn't be in repo, but just in case)
+.venv/
+venv/
+env/
+
+# Local secrets (none committed, but make policy explicit)
+.env
+.env.*
+secrets.env
+*.pem
+*.key
+
+# Upstream source clones (the factory git-clones source into <pkg>/upstream-src/
+# during Phase 2 source_grounding; never ship those — they belong to the
+# original packages, not to this repo).
+upstream-src/
+*/upstream-src/
+
+# Per-target working state that doesn't need to be re-shipped
+# (the iterate loop writes here; safe to drop on re-publish).
+*/_pending/
+*/_trajectory/

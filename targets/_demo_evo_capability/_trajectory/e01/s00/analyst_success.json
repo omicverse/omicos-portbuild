@@ -1,0 +1,1 @@
+{"batch_size": 2, "success_patterns": ["pre-tile QC always pays off"], "patch": {"reasoning": "encode pre-tile QC", "edits": [{"op": "append", "content": "Always confirm tile shape (n, 3, 224, 224) before embedding."}]}}

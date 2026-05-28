@@ -1,0 +1,113 @@
+{
+  "package": "lazyslide",
+  "source": "https://github.com/RendeiroLab/LazySlide.git",
+  "docs": "https://lazyslide.readthedocs.io/en/latest/",
+  "reasoning": "12 lazyslide tutorials cluster into 6 independently-triggerable skills. The package itself is the agent — there is ONE OmicOS agent (pathology_lazyslide) that owns all 6 skills and dispatches between them based on the user's request. This matches omicverse_omni precedent: a third-party package gets one front-door agent, not N per-capability agents. The 6 skills are: direct H&E pipeline (preprocessing + tile FM + zero-shot + tile-prediction approx seg + tile export), cell-level segmentation (uses lazyslide.segmentation), supervised classification (consumes known slide-level labels), survival prediction (time-to-event with TITAN), H&E + transcriptomics integration (RNALinker), virtual staining (image generation). Two pedagogy intros are not capabilities.",
+  "capabilities": [
+    {
+      "id": "pathology-lazyslide-he-analysis",
+      "title": "Direct H&E whole-slide morphology pipeline with LazySlide",
+      "tutorials": ["Preprocessing a WSI", "Feature extraction and spatial analysis", "Zero-shot learning", "Approximate segmentation through tile prediction", "Histology tile generation"],
+      "key_modules": ["lazyslide.preprocess", "lazyslide.tools", "lazyslide.plotting", "lazyslide.metrics"],
+      "key_apis": [
+        {"name": "wsidata.open_wsi", "purpose": "load WSI to WSIData (SpatialData subclass)"},
+        {"name": "lazyslide.preprocess.find_tissues", "purpose": "tissue mask to wsi.shapes['tissues']"},
+        {"name": "lazyslide.preprocess.tile_tissues", "purpose": "tile generation"},
+        {"name": "lazyslide.tools.feature_extraction", "purpose": "FM tile features"},
+        {"name": "lazyslide.tools.feature_aggregation", "purpose": "per-tile to slide-level"},
+        {"name": "lazyslide.tools.zero_shot_score + tools.text_image_similarity", "purpose": "zero-shot tile typing"}
+      ],
+      "distinct_from": "Outputs tissue + tile geometry + tile FM features + optional zero-shot probs. Does NOT produce cell-level shapes, molecular predictions, slide-level supervised labels, survival times, or generated images.",
+      "domain": "spatial-he",
+      "cost_profile": "gpu-required"
+    },
+    {
+      "id": "pathology-lazyslide-cell-segmentation",
+      "title": "Cell-level segmentation of H&E with LazySlide",
+      "tutorials": ["Cell segmentation tutorial"],
+      "key_modules": ["lazyslide.preprocess", "lazyslide.segmentation"],
+      "key_apis": [
+        {"name": "lazyslide.segmentation.cells", "purpose": "cell-level segmentation (default model='instanseg')"},
+        {"name": "lazyslide.segmentation.cell_types", "purpose": "cell type segmentation (default model='nulite')"},
+        {"name": "lazyslide.segmentation.tissue", "purpose": "DL-based tissue (model in {'grandqc','pathprofiler','hest'})"},
+        {"name": "lazyslide.segmentation.artifact / semantic / zero_shot", "purpose": "additional seg primitives"}
+      ],
+      "distinct_from": "Per-cell polygons (one row per cell). Different geometric primitive from tissue or tile shapes.",
+      "domain": "spatial-he",
+      "cost_profile": "gpu-required"
+    },
+    {
+      "id": "pathology-lazyslide-supervised-classification",
+      "title": "Slide-level supervised classification with known H&E labels",
+      "tutorials": ["Integration with slide-level labels"],
+      "key_modules": ["lazyslide.preprocess", "lazyslide.tools", "lazyslide.metrics"],
+      "key_apis": [
+        {"name": "lazyslide.tools.feature_extraction", "purpose": "tile-level FM features"},
+        {"name": "lazyslide.tools.feature_aggregation(encoder='mean'|'prism'|'titan')", "purpose": "slide-level embedding"},
+        {"name": "wsidata.agg_wsi", "purpose": "stack per-slide features into labeled cohort"},
+        {"name": "sklearn / torch head", "purpose": "downstream supervised classifier (not lazyslide-native)"}
+      ],
+      "distinct_from": "Requires KNOWN slide-level labels as supervision; outputs trained classifier + per-slide predictions.",
+      "domain": "spatial-he",
+      "cost_profile": "gpu-required"
+    },
+    {
+      "id": "pathology-lazyslide-survival-prediction",
+      "title": "Survival prediction from cancer WSIs with LazySlide TITAN",
+      "tutorials": ["Survival prediction with cancer WSIs"],
+      "key_modules": ["lazyslide.preprocess", "lazyslide.tools"],
+      "key_apis": [
+        {"name": "lazyslide.preprocess.tile_tissues(wsi, 448, mpp=0.5, background_fraction=0.5)", "purpose": "tiling at 448px for TITAN"},
+        {"name": "lazyslide.tools.feature_extraction(wsi, 'titan')", "purpose": "TITAN encoder tile features"},
+        {"name": "lazyslide.tools.feature_aggregation(wsi, 'titan', encoder='titan')", "purpose": "768-dim slide embedding"},
+        {"name": "sksurv.CoxnetSurvivalAnalysis OR torchsurv CoxMLP", "purpose": "Cox survival head"}
+      ],
+      "distinct_from": "Output is hazard / risk score / time-to-event with censoring; uses TITAN (not UNI/Virchow).",
+      "domain": "spatial-he",
+      "cost_profile": "gpu-required"
+    },
+    {
+      "id": "pathology-lazyslide-he-transcriptomics-integration",
+      "title": "Paired H&E + transcriptomics integration with LazySlide RNALinker",
+      "tutorials": ["Integration with transcriptomics"],
+      "key_modules": ["lazyslide.preprocess", "lazyslide.tools", "lazyslide.io"],
+      "key_apis": [
+        {"name": "lazyslide.tools.feature_extraction + feature_aggregation", "purpose": "WSI FM features + slide-level aggregation"},
+        {"name": "lazyslide.tools.RNALinker(agg_features, others, gene_name=None)", "purpose": "link image features to paired RNA-seq; .score(groupby, score_group, scale, test_method, n_features, key_added)"}
+      ],
+      "distinct_from": "Input REQUIRES paired Visium/RNA AnnData in addition to WSI. Prepares aligned (image, expression) and scores feature-gene associations; does NOT predict expression.",
+      "domain": "spatial-he",
+      "cost_profile": "gpu-required"
+    },
+    {
+      "id": "pathology-lazyslide-virtual-staining",
+      "title": "Virtual multiplex staining from H&E with LazySlide",
+      "tutorials": ["Virtual Staining"],
+      "key_modules": ["lazyslide.preprocess", "lazyslide.tools"],
+      "key_apis": [
+        {"name": "lazyslide.preprocess.tile_tissues(wsi, 256, stride_px=32)", "purpose": "256-px tiling with 32-px stride"},
+        {"name": "lazyslide.tools.virtual_stain(wsi, model='gigatime')", "purpose": "generate virtual stain channels; output to wsi.images['gigatime_prediction']; up to 50 biomarker channels"}
+      ],
+      "distinct_from": "Output is GENERATED IMAGES (per-channel stain reconstructions in wsi.images), not geometric shapes or feature tables.",
+      "domain": "spatial-he",
+      "cost_profile": "gpu-required"
+    }
+  ],
+  "agents": [
+    {
+      "id": "pathology_lazyslide",
+      "title": "Pathology — LazySlide (H&E whole-slide analysis omni-agent)",
+      "owns_skills": [
+        "pathology-lazyslide-he-analysis",
+        "pathology-lazyslide-cell-segmentation",
+        "pathology-lazyslide-supervised-classification",
+        "pathology-lazyslide-survival-prediction",
+        "pathology-lazyslide-he-transcriptomics-integration",
+        "pathology-lazyslide-virtual-staining"
+      ],
+      "domain": "spatial-he",
+      "bundle_rationale": "lazyslide is a third-party H&E WSI analysis package. Per OmicVerse precedent (omicverse_omni), an external package gets ONE OmicOS agent that dispatches between its sub-capabilities based on the user's intent. This avoids agent proliferation (6 nearly-identical use_when blocks would be redundant), keeps a single front-door for 'I want to do X with H&E using lazyslide', and matches how OmicOS already surfaces ecosystems."
+    }
+  ],
+  "pedagogy_only_tutorials": ["Welcome", "Visualization"]
+}

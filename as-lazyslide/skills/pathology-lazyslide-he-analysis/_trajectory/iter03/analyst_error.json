@@ -1,0 +1,20 @@
+{
+  "batch_size": 1,
+  "failure_summary": [
+    {
+      "failure_type": "no_smoke_acceptance_link",
+      "count": 1,
+      "description": "no example of how factory.acceptance smoke commands map to this skill's api set"
+    }
+  ],
+  "patch": {
+    "reasoning": "iter03",
+    "edits": [
+      {
+        "op": "insert_after",
+        "target": "## Chaining with he_to_st_predictor",
+        "content": "\n\n## Acceptance smoke recipe\n\nThis skill's `assets/acceptance.json` MUST include at least one smoke\nrunning:\n\n```python\nimport lazyslide as zs\nassert callable(zs.pp.find_tissues)\nassert callable(zs.tl.feature_extraction)\nassert callable(zs.tl.feature_aggregation)\nassert callable(zs.tl.zero_shot_score)\n```\n\nUnder `smoke_mode: \"import_only\"` this runs in < 5 s per CI invocation\nand catches lazyslide upgrades that break the call surface."
+      }
+    ]
+  }
+}

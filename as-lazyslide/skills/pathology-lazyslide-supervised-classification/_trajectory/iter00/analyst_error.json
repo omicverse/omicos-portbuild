@@ -1,0 +1,20 @@
+{
+  "batch_size": 1,
+  "failure_summary": [
+    {
+      "failure_type": "no_cv_guidance",
+      "count": 1,
+      "description": "small cohort classifiers need stratified k-fold CV; current Quick Workflow only mentions a single train_test_split"
+    }
+  ],
+  "patch": {
+    "reasoning": "pathology-lazyslide-supervised-classification",
+    "edits": [
+      {
+        "op": "insert_after",
+        "target": "## Branches: aggregator + head",
+        "content": "\n\n### Stratified k-fold CV for small cohorts\n\nFor cohort sizes < 200 slides, prefer `StratifiedKFold(n_splits=5,\nshuffle=True, random_state=10)` over a single `train_test_split`. Run\n`feature_extraction` + `feature_aggregation` per slide ONCE up-front, then\nfold the **per-slide AnnData** (cheap to re-split). Report mean AUROC ±\nstd across folds + per-fold confusion matrices.\n"
+      }
+    ]
+  }
+}

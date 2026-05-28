@@ -1,0 +1,4 @@
+capability_id: pathology-lazyslide-cell-segmentation
+kind: skill
+domain: spatial-he
+role: terminal
